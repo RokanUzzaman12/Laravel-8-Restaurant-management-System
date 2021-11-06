@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\user\HomeController;
+use App\Http\Controllers\admin\AdminController;
+use App\Http\Controllers\admin\FoodController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +22,12 @@ use App\Http\Controllers\user\HomeController;
 
 Route::get('/',[HomeController::class,'index']);
 Route::get('/redirects',[HomeController::class,'redirects']);
+Route::get('/user',[AdminController::class,'users']);
+Route::get('/deleteuser/{id}',[AdminController::class,'deleteuser']);
+Route::resource('foods',FoodController::class);
+
+
+
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
